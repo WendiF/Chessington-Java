@@ -12,7 +12,7 @@ public class Pawn extends AbstractPiece {
     public Pawn(PlayerColour colour) {
         super(Piece.PieceType.PAWN, colour);
     }
-    private int BOARD_SIZE = 7;
+    int BOARD_SIZE = 7;
 
     @Override
     public List<Move> getAllowedMoves(Coordinates from, Board board) {
@@ -28,7 +28,19 @@ public class Pawn extends AbstractPiece {
             moves.add(new Move(from, from.plus(direction, 0)));
         }
 
+//        Coordinates testCoord = from.plus(direction, 1);
+        if (isInBoard(from.plus(direction, 1)) && canCapture(from, from.plus(direction, 1), board)) {
+            moves.add(new Move(from, from.plus(direction, 1)));
+        }
+        if (isInBoard(from.plus(direction, -1)) && canCapture(from, from.plus(direction, -1), board)) {
+            moves.add(new Move(from, from.plus(direction, -1)));
+        }
+
         return moves;
+    }
+
+    private boolean canCapture(Coordinates from, Coordinates to, Board board) {
+        return board.get(to) != null && !board.get(from).getColour().equals(board.get(to).getColour());
     }
 
     private boolean isAtEndOfBoard(Coordinates from, int direction) {
@@ -37,5 +49,9 @@ public class Pawn extends AbstractPiece {
 
     private boolean notBlocked(Coordinates from, Board board, int direction) {
         return board.get(from.plus(direction, 0)) == null;
+    }
+
+    private boolean isInBoard(Coordinates coords) {
+        return coords.getRow() < BOARD_SIZE && coords.getRow() >= 0 && coords.getCol() < BOARD_SIZE && coords.getCol() >= 0;
     }
 }
