@@ -4,6 +4,7 @@ import training.chessington.model.pieces.*;
 
 public class Board {
 
+    public static final int BOARD_SIZE = 8;
     private Piece[][] board = new Piece[8][8];
 
     private Board() {

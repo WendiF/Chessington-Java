@@ -16,4 +16,8 @@ public interface Piece {
     PlayerColour getColour();
 
     List<Move> getAllowedMoves(Coordinates from, Board board);
+
+    default boolean isInBoard(Coordinates coords, Board board) {
+        return coords.getRow() < board.BOARD_SIZE && coords.getRow() >= 0 && coords.getCol() < board.BOARD_SIZE && coords.getCol() >= 0;
+    }
 }
