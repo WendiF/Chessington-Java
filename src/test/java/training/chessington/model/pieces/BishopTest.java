@@ -49,14 +49,14 @@ public class BishopTest {
     @Test
     public void bishopIsBlockedByOwnPlayersPiece() {
         // Assert
-        assertThat(moves).contains(new Move(movingCoords, new Coordinates(5, 5))).
-                doesNotContain(new Move(movingCoords, new Coordinates(4, 6)));
+        assertThat(moves).contains(new Move(movingCoords, new Coordinates(4, 2))).
+                doesNotContain(new Move(movingCoords, new Coordinates(3, 1)));
     }
 
     @Test
     public void bishopCanTakeOpponentsPiece() {
         // Assert
-        assertThat(moves).contains(new Move(movingCoords, new Coordinates(3, 1)));
+        assertThat(moves).contains(new Move(movingCoords, new Coordinates(4, 6)));
     }
 
     @Test
